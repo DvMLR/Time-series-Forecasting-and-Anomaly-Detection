@@ -9,3 +9,5 @@ Contiene:
 3- Los pesos y checkpoints se pueden encontrar en el siguiente link: https://drive.google.com/drive/folders/1S2N_-vIxboq7ZsZnxJAl80VVY-7XYhRV?usp=sharing
 
 4- Los pesos y modelos guardados en JSON deben estar en la carpeta principal, junto a los demás archivos que se ven en el repositorio. El archivo.PTH debe estar ubicado      en la carpeta "Checkpoints" y dentro de la sub-carpeta que se encuentra allí.
+
+Adicionalmente, para entrenar el modedelo de pronóstico contenido aquí se puede obtener información adicional en el repositorio de sus creadores: https://github.com/zhouhaoyi/Informer2020
