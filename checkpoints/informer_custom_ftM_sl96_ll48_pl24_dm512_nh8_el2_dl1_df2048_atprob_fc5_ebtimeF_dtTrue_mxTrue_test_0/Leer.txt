@@ -1,0 +1,1 @@
+Los pesos con nombre "weight" deben ir en esta carpeta
