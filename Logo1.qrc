@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="logolab">
+    <file>Mi proyecto.png</file>
+  </qresource>
+</RCC>

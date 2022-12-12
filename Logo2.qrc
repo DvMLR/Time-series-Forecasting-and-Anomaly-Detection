@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="logoU">
+    <file>descargar.png</file>
+  </qresource>
+</RCC>
