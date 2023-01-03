@@ -1,6 +1,7 @@
 import os
 import numpy as np
 import pandas as pd
+import random
 
 import torch
 from torch.utils.data import Dataset, DataLoader
@@ -327,9 +328,11 @@ class Dataset_Pred(Dataset):
         #     cols = list(df_raw.columns); cols.remove(self.target); cols.remove('date')
         # df_raw = df_raw[['date']+cols+[self.target]]
         
-        border1 = len(df_raw)-self.seq_len
-        border2 = len(df_raw)
-        
+        #border1 = len(df_raw)-self.seq_len 
+        #border2 = len(df_raw)
+        border1= random.randint(0, 224477)  #se toma comienzo de una ventana aleatoria
+        border2= border1 + 96 #fin de ventana aleatoria de largo 96
+
         if self.features=='M' or self.features=='MS':
             cols_data = df_raw.columns[1:]
             df_data = df_raw[cols_data]

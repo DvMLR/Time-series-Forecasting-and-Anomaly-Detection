@@ -77,6 +77,8 @@ loaded_model = model_from_json(loaded_model_json)
 loaded_model.load_weights("weights.best5.hdf5")
 print("Cargar modelo del disco")
 
+
+
 class MiApp(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
@@ -131,9 +133,9 @@ class MiApp(QtWidgets.QMainWindow):
         self.grafica5.grafica_datos2('Tiempo','Vib L.A',1)
         self.grafica6.grafica_datos2('Tiempo','Vib L.L',2)
 
-        self.grafica7.grafica_datos3('Tiempo','Corriente',0)
-        self.grafica8.grafica_datos4('Tiempo','Vib L.A',1, )
-        self.grafica9.grafica_datos5('Tiempo','Vib L.L',2)
+        self.grafica7.grafica_datos3('Tiempo','Corriente',0,[274,274],[253,253],[0,23])
+        self.grafica8.grafica_datos4('Tiempo','Vib L.A',1,[2.85,2.85],[1.99,1.99],[0,23])
+        self.grafica9.grafica_datos5('Tiempo','Vib L.L',2,[2.18,2.18],[1.2,1.2],[0,23])
 
     def informacion(self):
         total_anom = self.ui.total.text()
@@ -216,6 +218,7 @@ class Canvas_grafica(FigureCanvas):
         entradas = np.load('./results/'+setting+'/entradas.npy') #se cargan entradas desde archivo .npy
         self.axes.cla()  # Clear the canvas.
         self.axes.grid()
+        self.axes.margins(x=0)
         self.axes.plot(entradas[:,canal])
         self.axes.set_ylabel(ylabel)
         self.axes.set_xlabel(xlabel)
@@ -226,21 +229,27 @@ class Canvas_grafica(FigureCanvas):
         pronóstico = np.load('./results/'+setting+'/real_prediction.npy') #se carga pronóstico desde archivo .npy
         self.axes.cla()  # Clear the canvas.
         self.axes.grid()
-        self.axes.plot(pronóstico[:,canal])
+        self.axes.margins(x=0)
+        self.axes.plot(pronóstico[:,canal], c='orange')
         self.axes.set_ylabel(ylabel)
         self.axes.set_xlabel(xlabel)
         self.draw()
     
     #Graficas de anomalías
-    def grafica_datos3(self, xlabel, ylabel, canal):
+    def grafica_datos3(self, xlabel, ylabel, canal, y1, y2, x):
         #anomalías para corrientes
         #Si existen anomalias se usa el primer plot, de esta forma se evita un error que se podría producir si no se detectan anomalías
         if  anomalias_corrientes.empty is False:
             pronóstico = np.load('./results/'+setting+'/real_prediction.npy') #se carga pronóstico desde archivo .npy
             self.axes.cla()  # Clear the canvas.
             self.axes.grid()
+            self.axes.margins(x=0)
             self.axes.plot(pronóstico[:,canal])
             self.axes.scatter(anomalias_corrientes.index, anomalias_corrientes[ylabel], c='r')
+            self.axes.plot(x, y1, linestyle=(0, (5, 1)), linewidth=1, color="green") #LimSup1
+            self.axes.plot(x, y2, linestyle=(0, (5, 1)), linewidth=1, color="green") #LimSup2
+            #self.axes.plot(x, y3, linestyle=(0, (5, 1)), linewidth=1, color="orange") #LimInf1
+            #self.axes.plot(x, y4, linestyle=(0, (5, 1)), linewidth=1, color="orange") #LimInf2
             self.axes.set_ylabel(ylabel)
             self.axes.set_xlabel(xlabel)
             self.draw()
@@ -249,12 +258,17 @@ class Canvas_grafica(FigureCanvas):
             pronóstico = np.load('./results/'+setting+'/real_prediction.npy') #se carga pronóstico desde archivo .npy
             self.axes.cla()  # Clear the canvas.
             self.axes.grid()
+            self.axes.margins(x=0)
             self.axes.plot(pronóstico[:,canal])
+            self.axes.plot(x, y1, linestyle=(0, (5, 1)), linewidth=1, color="green") #LimSup1
+            self.axes.plot(x, y2, linestyle=(0, (5, 1)), linewidth=1, color="green") #LimSup2
+            #self.axes.plot(x, y3, linestyle=(0, (5, 1)), linewidth=1, color="orange") #LimInf1
+            #self.axes.plot(x, y4, linestyle=(0, (5, 1)), linewidth=1, color="orange") #LimInf2
             self.axes.set_ylabel(ylabel)
             self.axes.set_xlabel(xlabel)
             self.draw()
         
-    def grafica_datos4(self, xlabel, ylabel, canal):
+    def grafica_datos4(self, xlabel, ylabel, canal, y1, y2, x):
 
         #anomalías para VIBLA
         #Si existen anomalias se usa el primer plot, de esta forma se evita un error que se podría producir si no se detectan anomalías
@@ -262,8 +276,13 @@ class Canvas_grafica(FigureCanvas):
             pronóstico = np.load('./results/'+setting+'/real_prediction.npy') #se carga pronóstico desde archivo .npy
             self.axes.cla()  # Clear the canvas.
             self.axes.grid()
+            self.axes.margins(x=0)
             self.axes.plot(pronóstico[:,canal])
-            self.axes.scatter(anomalias_vibla.index, anomalias_vibla[ylabel], c='r')
+            self.axes.scatter(anomalias_vibla.index, anomalias_vibla['VibLA'], c='r')
+            self.axes.plot(x, y1, linestyle=(0, (5, 1)), linewidth=1, color="green") #LimSup1
+            self.axes.plot(x, y2, linestyle=(0, (5, 1)), linewidth=1, color="green") #LimSup2
+            #self.axes.plot(x, y3, linestyle=(0, (5, 1)), linewidth=1, color="orange") #LimInf1
+            #self.axes.plot(x, y4, linestyle=(0, (5, 1)), linewidth=1, color="orange") #LimInf2
             self.axes.set_ylabel(ylabel)
             self.axes.set_xlabel(xlabel)
             self.draw()
@@ -271,13 +290,18 @@ class Canvas_grafica(FigureCanvas):
             pronóstico = np.load('./results/'+setting+'/real_prediction.npy') #se carga pronóstico desde archivo .npy
             self.axes.cla()  # Clear the canvas.
             self.axes.grid()
+            self.axes.margins(x=0)
             self.axes.plot(pronóstico[:,canal])
+            self.axes.plot(x, y1, linestyle=(0, (5, 1)), linewidth=1, color="green") #LimSup1
+            self.axes.plot(x, y2, linestyle=(0, (5, 1)), linewidth=1, color="green") #LimSup2
+            #self.axes.plot(x, y3, linestyle=(0, (5, 1)), linewidth=1, color="orange") #LimInf1
+            #self.axes.plot(x, y4, linestyle=(0, (5, 1)), linewidth=1, color="orange") #LimInf2
             self.axes.set_ylabel(ylabel)
             self.axes.set_xlabel(xlabel)
             self.draw()
         
     
-    def grafica_datos5(self, xlabel, ylabel, canal):
+    def grafica_datos5(self, xlabel, ylabel, canal, y1, y2, x):
 
         #anomalías para VIBLL
         #Si existen anomalias se usa el primer plot, de esta forma se evita un error que se podría producir si no se detectan anomalías
@@ -285,16 +309,27 @@ class Canvas_grafica(FigureCanvas):
             pronóstico = np.load('./results/'+setting+'/real_prediction.npy') #se carga pronóstico desde archivo .npy
             self.axes.cla()  # Clear the canvas.
             self.axes.grid()
+            self.axes.margins(x=0)
             self.axes.plot(pronóstico[:,canal])
-            self.axes.scatter(anomalias_vibll.index, anomalias_vibll[ylabel], c='r')
+            self.axes.scatter(anomalias_vibll.index, anomalias_vibll['VibLL'], c='r')
+            self.axes.plot(x, y1, linestyle=(0, (5, 1)), linewidth=1, color="green") #LimSup1
+            self.axes.plot(x, y2, linestyle=(0, (5, 1)), linewidth=1, color="green") #LimSup2
+            #self.axes.plot(x, y3, linestyle=(0, (5, 1)), linewidth=1, color="orange") #LimInf1
+            #self.axes.plot(x, y4, linestyle=(0, (5, 1)), linewidth=1, color="orange") #LimInf2
             self.axes.set_ylabel(ylabel)
             self.axes.set_xlabel(xlabel)
             self.draw()
+
         else:
             pronóstico = np.load('./results/'+setting+'/real_prediction.npy') #se carga pronóstico desde archivo .npy
             self.axes.cla()  # Clear the canvas.
             self.axes.grid()
+            self.axes.margins(x=0)
             self.axes.plot(pronóstico[:,canal])
+            self.axes.plot(x, y1, linestyle=(0, (5, 1)), linewidth=1, color="green") #LimSup1
+            self.axes.plot(x, y2, linestyle=(0, (5, 1)), linewidth=1, color="green") #LimSup2
+            #self.axes.plot(x, y3, linestyle=(0, (5, 1)), linewidth=1, color="orange") #LimInf1
+            #self.axes.plot(x, y4, linestyle=(0, (5, 1)), linewidth=1, color="orange") #LimInf2
             self.axes.set_ylabel(ylabel)
             self.axes.set_xlabel(xlabel)
             self.draw()
