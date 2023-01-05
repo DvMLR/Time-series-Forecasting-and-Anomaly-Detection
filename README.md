@@ -10,4 +10,4 @@ Contiene:
 
 4- Los pesos y modelos guardados en JSON deben estar en la carpeta principal, junto a los demás archivos que se ven en el repositorio. El archivo.PTH debe estar ubicado      en la carpeta "Checkpoints" y dentro de la sub-carpeta que se encuentra allí.
 
-Adicionalmente, para entrenar el modedelo de pronóstico contenido aquí se puede obtener información adicional en el repositorio de sus creadores: https://github.com/zhouhaoyi/Informer2020
+Adicionalmente, para entrenar el modelo de pronóstico contenido aquí se puede obtener información adicional en el repositorio de sus creadores: https://github.com/zhouhaoyi/Informer2020
