@@ -14,4 +14,8 @@ Adicionalmente, para entrenar el modelo de pronóstico contenido aquí se puede 
 
 # ¿Cómo se utiliza?
 
-Para ejecutar el sistema de pronóstico de detección y anomalías basta con ejecutar el archivo [Main_GUI.py](/Main_GUi.py)
+Para ejecutar el sistema de pronóstico de detección y anomalías basta con ejecutar el archivo [Main_GUI.py](/Main_GUi.py), este se encargará de ejecutar la inferfaz que permita utilizar el sistema, en la ventana principal se encuentran los botones que permiten realizar un pronóstico de una ventana aleatoria de tiempo tomada desde la base de datos y posteriormente gráficar dicho pronóstico y detección de las anomalías en las señales.
+
+# Base de datos personalizada
+
+Si se requiere utilizar otros datos para predicción se debe agregar el arhivo .csv a la carpeta 
