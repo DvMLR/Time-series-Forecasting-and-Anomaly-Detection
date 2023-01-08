@@ -18,4 +18,4 @@ Para ejecutar el sistema de pronóstico de detección y anomalías basta con eje
 
 # Base de datos personalizada
 
-Si se requiere utilizar otros datos para predicción se debe agregar el arhivo .csv a la carpeta 
+Si se requiere utilizar otros datos para predicción se debe agregar el arhivo .csv a la carpeta [data](/data/ETT/)
