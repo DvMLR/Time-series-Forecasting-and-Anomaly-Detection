@@ -18,4 +18,4 @@ Para ejecutar el sistema de pronóstico de detección y anomalías basta con eje
 
 # Base de datos personalizada
 
-Si se requiere utilizar otros datos para predicción se debe agregar el arhivo .csv a la carpeta [data](/data/ETT/)
+Si se requiere utilizar otros datos para predicción se debe agregar el arhivo .csv a la carpeta [data](/data/ETT/), y posteriormente ejecutar la GUI. Adicionalmente, si se desea reentrenar los modelos han de hacerse por separado. Para reentrenar el modelo de pronóstico es necesario usar comandos que están especificados en https://github.com/zhouhaoyi/Informer2020 y guardar los pesos en la carpeta [checkpoints]()/)checkpoints 
