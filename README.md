@@ -14,4 +14,4 @@ Adicionalmente, para entrenar el modelo de pronóstico contenido aquí se puede 
 
 # ¿Cómo se utiliza?
 
-Para ejecutar el sistema de pronóstico de detección y anomalías basta con ejecutar el archivo [Main_GUI.py](Main_GUI.py)
+Para ejecutar el sistema de pronóstico de detección y anomalías basta con ejecutar el archivo [Main_GUI.py](/Main_GUi.py)
